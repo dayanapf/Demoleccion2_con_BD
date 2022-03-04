@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    </head>
+    <body class="bg-light">
+        <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">            
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas">Adicionar Butacas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_vendidas">Listar Butacas Vendidas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_no_vendidas">Listar Butacas no Vendidas</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/teatro">Adicionar teatro</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/personas">Adicionar Personas</a>
+                </li>
+              </ul>              
+            </div>
+          </div>
+        </nav>
+        </div>
+        <div>
+        
+            
+        </div>
+        <div>
+        <h3>Ejercicio del tema 2 lección 7</h3>
+        <p>Debido a la gran cantidad de espectadores que puede asistir a una puesta en escena de un teatro, 
+            se necesita realizar un pequeño sistema que permita llevar el control de la ubicación de los asistentes al mismo. 
+            Del teatro se conoce su nombre y la cantidad total de butacas que posee. Se sabe que cada butaca tiene un identificador 
+            (está formado por una letra que representa la fila y el número que ocupa el asiento dentro de la fila), 
+            además se conoce si ya fue vendida. Las butacas están en la platea o en balcones. De las butacas que son en 
+            platea se conoce si son de protocolo o no. Las butacas que son de balcón, pueden o no, estar en áreas de fumadores.<p> 
+            
+        <p>El precio de cada butaca se calcula de la siguiente forma:</p>
+            
+                <li>• platea - 30 pesos en caso de ser de protocolo o 20 pesos en caso contrario.</li>
+                <li>• balcón - número del balcón * 0.5 y si son para fumadores pagan 5 pesos más. </li><br/>
+                
+        <p>Una primera versión del sistema debe brindar la siguiente información:</p>
+                <li>• Adicionar teatro</li>
+                <li>• Adicionar butaca</li>
+                <li>• Vender butaca</li>
+                <li>• La cantidad de butacas que han sido vendidas.</li>
+                <li>• El total de dinero recaudado por concepto de butacas vendidas.</li>
+                <li>• Saber el dinero que aportan todas las butacas que son de fumadores.</li>
+                </div>
+    </body>
+</html>
+

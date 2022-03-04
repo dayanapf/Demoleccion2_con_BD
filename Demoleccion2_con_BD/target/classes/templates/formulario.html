@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Personas</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    </head>
+    <body class="bg-light">
+        <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">            
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas">Adicionar Butacas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_vendidas">Listar Butacas Vendidas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_no_vendidas">Listar Butacas no Vendidas</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/teatro">Adicionar teatro</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/personas">Adicionar Personas</a>
+                </li>
+              </ul>              
+            </div>
+          </div>
+        </nav>
+        </div>
+        <div>
+        <form class="form-check" method="POST" th:action="@{/personas}" th:object="${personaFormulario}">
+            <h3>Complete el formulario para agregar una Persona</h3>
+            
+            
+            <label>Nombre:</label>
+            <input class="form-control" placeholder="Nombre(s)" name="nombre" th:field="*{nombre}" th:value="*{nombre}"/><br/>
+            <label>Apellidos:</label>
+            <input class="form-control" placeholder="Apellidos" name="apellidos" th:field="*{apellidos}" th:value="*{apellidos}"/><br/>
+
+            <input class="btn btn-primary" type="submit"  value="enviar"/>
+        </form> 
+            
+        </div>
+
+        <table class="table table-striped">
+            <tr>
+                <td><strong>Nombre</strong></td>
+                <td><strong>Apellidos</strong></td>
+            </tr>
+            <th:block th:each="p:${personas}">
+                <tr>
+                    <td th:text="${p.nombre}"></td>
+                    <td th:text="${p.apellidos}"></td>
+                </tr>
+            </th:block>
+        </table>
+    </body>
+</html>
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Agregando Butacas</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script th:src="@{/js/formulario.js}"></script>
+    </head>
+    <body class="bg-light">
+        <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">            
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas">Adicionar Butacas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_vendidas">Listar Butacas Vendidas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_no_vendidas">Listar Butacas no Vendidas</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/teatro">Adicionar teatro</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/personas">Adicionar Personas</a>
+                </li>
+              </ul>              
+            </div>
+          </div>
+        </nav>
+        </div>
+        
+        <div>
+            <form name="habilitar" class="form-check">
+                <h3>Tipo de Butaca</h3>
+                                <select name="tipo_butaca" value="Balcon">
+                                    <option>Balcon</option>
+                                    <option>Platea</option>
+                                </select>
+            </form>
+        </div>
+        <div>
+        <form class="form-check" method="POST" id="formulario_butaca" name="formulario_balcon" th:action="@{/butacas}" th:object="${balconFormulario}">
+            
+            <h3>Complete el formulario para agregar una Balcon</h3>
+            <input type="hidden" th:field="*{id}" th:value="*{id}"/>
+            
+            <label>Id de la butaca:</label>
+            <input class="form-control" id="id_balcon" placeholder="id_nombre" name="id_nombre" th:field="*{id_nombre}" th:value="*{id_nombre}" required/><br>
+            
+                    <input type="checkbox" id="vendida_balcon" name="vendida" th:field="*{vendida}" th:value="*{vendida}"/>Vendida<br><br>
+                    
+            <input type="checkbox" id="fumadores_balcon" name="fumadores" th:field="*{fumadores}" th:value="*{fumadores}"/>Area de fumadores?<br><br>
+
+            <input type="submit" id="boton_balcon" class="btn btn-primary" onclick="validarform()" value="enviar">
+        </form>   
+        </div>
+        <br>
+        <div>         
+            
+            <form class="form-check" method="POST" id="formulario_platea"  name="formulario_platea" th:action="@{/butacas}" th:object="${plateaFormulario}">
+                <h3>Complete el formulario para agregar una platea</h3>
+                <input type="hidden" th:field="*{id}" th:value="*{id}"/>
+                <label>Id de la butaca:</label>
+                <input class="form-control" id="id_platea" placeholder="id_nombre" name="id_nombre" th:field="*{id_nombre}" th:value="*{id_nombre}" required/><br>
+            
+                <input type="checkbox" id="vendida_platea" name="vendida" th:field="*{vendida}" th:value="*{vendida}"/>Vendida<br><br>
+                    
+                <input type="checkbox" id="protocolo_platea" name="protocolo" th:field="*{protocolo}" th:value="*{protocolo}"/>Area de protocolo?<br><br>
+
+            <input type="submit" id="boton_platea" class="btn btn-primary" onsubmit="validarform()" value="enviar"/>
+        </form>   
+        </div>
+        <br>
+        <div>
+            <p><strong><center>Registro de Adicción de Balcones</center></strong></p>
+        <table class="table table-striped">
+            <tr>
+                <td><strong>ID</strong></td>
+                <td><strong>Identificador del Balcon</strong></td>
+                <td><strong>Fue Vendida</strong></td>
+                <td><strong>Tiene Area de Fumadores?</strong></td>
+                <td><strong>Herramientas</strong></td>
+                
+            </tr>
+            <th:block th:each="bb:${balcon}">
+                <tr>
+                    <td th:text="${bb.id}"></td>
+                    <td th:text="${bb.id_nombre}"></td>
+                    <td th:text="${bb.vendida}"></td>
+                    <td th:text="${bb.fumadores}"></td>
+                    <td><a th:href="@{'/eliminar/'+${bb.id}}">Eliminar</a></td>
+                </tr>
+            </th:block>            
+        </table>
+        </div>
+        
+        <div>
+            <p><strong><center>Registro de Adicción de Plateas</center></strong></p>
+        <table class="table table-striped">
+            <tr>
+                <td><strong>ID</strong></td>
+                <td><strong>Identificador de la Platea</strong></td>
+                <td><strong>Fue Vendida</strong></td>
+                <td><strong>Tiene Area de Protocolo?</strong></td>
+                <td><strong>Herramientas</strong></td>
+                
+            </tr>
+            <th:block th:each="bp:${platea}">
+                <tr>
+                    <td th:text="${bp.id}"></td>
+                    <td th:text="${bp.id_nombre}"></td>
+                    <td th:text="${bp.vendida}"></td>
+                    <td th:text="${bp.protocolo}"></td>
+                    <td><a th:href="@{'/eliminar/'+${bp.id}}">Eliminar</a></td>
+                </tr>
+            </th:block>            
+        </table>
+        </div>
+        
+    </body>
+</html>
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Agregando Teatros</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        
+        
+    </head>
+    <body class="bg-light">
+        <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">            
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas">Adicionar Butacas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_vendidas">Listar Butacas Vendidas</a>
+                </li>
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/butacas_no_vendidas">Listar Butacas no Vendidas</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/teatro">Adicionar teatro</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080/personas">Adicionar Personas</a>
+                </li>
+              </ul>              
+            </div>
+          </div>
+        </nav>
+        </div>
+        <div>
+        <form class="form-check" method="POST" th:action="@{/teatro}" th:object="${teatroFormulario}">
+            <h3>Complete el formulario para agregar un Teatro</h3>
+            <input type="hidden" th:field="*{id}" th:value="*{id}"/>
+            <label>Nombre:</label>            
+            <input class="form-control" placeholder="Nombre" name="nombre" th:field="*{nombre}" th:value="*{nombre}"/><br/>
+            <label>Cantidad de Butacas:</label>
+            <input class="form-control" placeholder="cantidad de BUtacas" name="Butacas" th:field="*{cant_butacas}" th:value="*{cant_butacas}"/><br/>
+
+            <input type="submit" class="btn btn-primary" value="enviar"/>
+        </form>
+        </div>
+        <div>
+
+        <table class="table table-striped">
+            <tr>
+                <td><strong>ID</strong></td>
+                <td><strong>Nombre</strong></td>
+                <td><strong>Cantidad de Butacas</strong></td>
+                
+            </tr>
+            <th:block th:each="t:${teatro}">
+                <tr>
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.nombre}"></td>
+                    <td th:text="${t.cant_butacas}"></td>
+                </tr>
+            </th:block>
+        </table>
+            
+        </div>
+    </body>
+</html>
+
